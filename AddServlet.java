@@ -1,27 +1,20 @@
-<html>
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    </head>
-    <body>
-        <h2>Adding Two Numbers via JQuery AJAX</h2>
-            <input type="number" id="n1">
-            <input type="number" id="n2">
-            <button onclick="addNumbers()"> Add </button>
-        <div id="result">The result will be displayed here without page reload</div>
-    </body>
-</html>
+package com.cslc.Package1;
 
-<script>
-function addNumbers()
-    {
-        var data = 'n1=' + $('#n1').val() +'&n2=' + $('#n2').val();
-        $.ajax({
-            url: "add.do", 
-            data: data, 
-            type: "post",
-            success: function (data) {
-                $('#result').html(data);
-            }
-        });
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+public class AddServlet extends HttpServlet {
+
+    @Override
+    protected void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int a=Integer.parseInt(request.getParameter("n1"));
+        int b=Integer.parseInt(request.getParameter("n2"));
+        int c=a+b;
+        response.getWriter().print("The sum of "+a+"+"+b+"="+c);
+       
+        
     }
-</script>
+}
